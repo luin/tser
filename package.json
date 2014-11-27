@@ -1,0 +1,33 @@
+{
+  "name": "tser",
+  "version": "1.0.0",
+  "description": "A general client for RESTful API",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/luin/tser.git"
+  },
+  "keywords": [
+    "restful",
+    "api",
+    "client",
+    "rest"
+  ],
+  "author": "Zihua Li",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/luin/tser/issues"
+  },
+  "homepage": "https://github.com/luin/tser",
+  "engines": {
+    "node": ">= 0.11.13"
+  },
+  "dependencies": {
+    "harmony-proxy": "0.0.2",
+    "methods": "~1.1.0",
+    "request-promise": "^0.3.2"
+  }
+}
