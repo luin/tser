@@ -1,27 +1,42 @@
 var Collection = require('./lib/collection');
+var _ = require('lodash');
+var http = require('http');
+var https = require('https');
 
-function defaults(def, override) {
-  var obj = {};
-  for (var key in def) {
-    if (def.hasOwnProperty(key)) {
-      obj = override[key] || def[key];
-    }
-  }
-}
-
-module.exports = function(url, options) {
-  options = defaults({
+exports = module.exports = function(url, options) {
+  options = _.defaults(options || {}, {
+    values: {},
     preferQuery: ['get', 'head', 'delete', 'options']
-  }, options);
+  });
 
-  if (typeof url !== 'string') {
-    var addr = url.address();
+  if (typeof url === 'function') {
+    var app = http.createServer(url);
+    var addr = app.address();
     if (!addr) {
-      url.listen(0);
+      app.listen(0);
     }
-    var port = url.address().port;
-    var protocol = url instanceof https.Server ? 'https' : 'http';
-    url = protocol + '://127.0.0.1:' + port + path;
+    var port = app.address().port;
+    var protocol = app instanceof https.Server ? 'https' : 'http';
+    url = protocol + '://127.0.0.1:' + port;
   }
-  return Collection(null, null, options);
+  options.url = url;
+  var base = Collection(null, null, null, options);
+  base.$set = function(key, value) {
+    if (arguments.length === 2) {
+      var obj = {};
+      obj[key] = value;
+      return base.$set(obj);
+    }
+    Object.keys(key).forEach(function(k) {
+      options.values[k] = key[k];
+    });
+    return base;
+  };
+  base.$get = function(key) {
+    return options[key];
+  };
+  base.$options = options;
+  return base;
 };
+
+exports.ResponseError = require('./lib/response-error');

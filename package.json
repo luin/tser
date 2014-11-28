@@ -4,7 +4,7 @@
   "description": "A general client for RESTful API",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha --harmony"
   },
   "repository": {
     "type": "git",
@@ -27,7 +27,17 @@
   },
   "dependencies": {
     "harmony-proxy": "0.0.2",
+    "lodash": "^2.4.1",
     "methods": "~1.1.0",
+    "request": "^2.48.0",
     "request-promise": "^0.3.2"
+  },
+  "devDependencies": {
+    "chai": "^1.10.0",
+    "chai-as-promised": "^4.1.1",
+    "express": "^4.10.4",
+    "mocha": "^2.0.1",
+    "proxyquire": "^1.1.0",
+    "rewire": "^2.1.3"
   }
 }
