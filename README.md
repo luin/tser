@@ -3,6 +3,8 @@ Tser
 
 A general node.js client for RESTful API
 
+[![Build Status](https://travis-ci.org/luin/tser.png?branch=master)](https://travis-ci.org/luin/tser)
+
 Install
 -------
 
