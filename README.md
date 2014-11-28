@@ -31,7 +31,7 @@ var tser = require('tser');
 
 var api = tser('http://demo7394653.mockable.io/');
 
-// POST http://domain.com/api/users
+// POST http://demo7394653.mockable.io/api/users
 //  with json body { name: 'Bob' }
 api.users.post({ name: 'Bob' }).then(function(res) {
   console.log(res);
@@ -52,7 +52,7 @@ var api = tser('http://demo7394653.mockable.io/', {
   }
 });
 
-// GET http://domain.com/api/users/me
+// GET http://demo7394653.mockable.io/api/users/me
 api.users('me').get().catch(function(err) {
   // 401
 });
@@ -62,7 +62,7 @@ api.$set('auth', {
   pass: 'pass'
 });
 
-// GET http://domain.com/api/users/me
+// GET http://demo7394653.mockable.io/api/users/me
 api.users('me').get().then(function(me) {
     console.log(me);
 });
