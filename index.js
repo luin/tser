@@ -9,6 +9,9 @@ exports = module.exports = function(url, options) {
     preferQuery: ['get', 'head', 'delete', 'options']
   });
 
+  if (typeof url === 'object' && url !== null && typeof url.callback === 'function') {
+    url = url.callback();
+  }
   if (typeof url === 'function') {
     var app = http.createServer(url);
     var addr = app.address();
