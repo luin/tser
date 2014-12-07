@@ -6,6 +6,7 @@ var expect = require('chai').expect;
 
 var stubFunc = function(options, callback) {
   if (options.url.indexOf('reject') === -1) {
+    options.statusCode = 200;
     callback(null, options, { body: true });
   } else {
     callback({ err: 'err' }, options, { body: true });

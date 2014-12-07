@@ -5,7 +5,7 @@ chai.use(require('chai-as-promised'));
 var expect = require('chai').expect;
 
 var stubFunc = function(options, callback) {
-  callback(null, null, options);
+  callback(null, { statusCode: 200 }, options);
 };
 stubFunc['@global'] = true;
 var tser = proxyquire('..', { 'request': stubFunc });

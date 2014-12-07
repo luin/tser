@@ -38,6 +38,13 @@ exports = module.exports = function(url, options) {
   base.$get = function(key) {
     return options[key];
   };
+  base.$auth = function(user, pass) {
+    if (typeof options.defaults === 'undefined') {
+      options.defaults = {};
+    }
+    options.defaults.auth = { user: user, pass: pass };
+    return base;
+  };
   base.$options = options;
   return base;
 };
