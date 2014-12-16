@@ -49,6 +49,9 @@ exports = module.exports = function(url, options) {
     if (typeof options.defaults === 'undefined') {
       options.defaults = { headers: {} };
     }
+    if (typeof options.defaults.headers === 'undefined') {
+      options.defaults.headers = {};
+    }
     if (arguments.length === 2) {
       var obj = {};
       obj[key] = value;
