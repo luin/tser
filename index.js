@@ -45,6 +45,20 @@ exports = module.exports = function(url, options) {
     options.defaults.auth = { user: user, pass: pass };
     return base;
   };
+  base.$header = function(key, value) {
+    if (typeof options.defaults === 'undefined') {
+      options.defaults = { headers: {} };
+    }
+    if (arguments.length === 2) {
+      var obj = {};
+      obj[key] = value;
+      return base.$header(obj);
+    }
+    Object.keys(key).forEach(function(k) {
+      options.defaults.headers[k] = key[k];
+    });
+    return base;
+  };
   base.$options = options;
   return base;
 };
