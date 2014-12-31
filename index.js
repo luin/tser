@@ -6,7 +6,8 @@ var https = require('https');
 exports = module.exports = function(url, options) {
   options = _.defaults(options || {}, {
     values: {},
-    preferQuery: ['get', 'head', 'delete', 'options']
+    preferQuery: ['get', 'head', 'delete', 'options'],
+    basePath: ''
   });
 
   if (typeof url === 'object' && url !== null && typeof url.callback === 'function') {
@@ -20,7 +21,7 @@ exports = module.exports = function(url, options) {
     }
     var port = app.address().port;
     var protocol = app instanceof https.Server ? 'https' : 'http';
-    url = protocol + '://127.0.0.1:' + port;
+    url = protocol + '://127.0.0.1:' + port + options.basePath;
   }
   options.url = url;
   var base = Collection(null, null, null, options);
